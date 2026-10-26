@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; media-src 'self' data: blob:; connect-src 'self' data: blob:; worker-src 'self' blob:; manifest-src 'self'; form-action 'none'; base-uri 'none'; object-src 'none'">
+<meta name="referrer" content="no-referrer">
+<title>URL Toolkit — URL Encode, Decode, Parse &amp; Strip Tracking Params | S3eidat Tools</title>
+<meta name="description" content="Percent-encode and decode URLs (component or full), break a URL into protocol, host, path and query, edit query parameters live, and strip utm, fbclid and gclid tracking in one click. Free, private.">
+<meta property="og:title" content="URL Toolkit — encode, decode and clean URLs">
+<meta property="og:description" content="Encode/decode, parse, edit query params and strip tracking. Runs 100% in your browser.">
+<meta property="og:image" content="screenshot.png">
+<link rel="icon" href="kit/icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="kit/kit.css">
+<link rel="stylesheet" href="app.css">
+<script src="kit/kit.js"></script>
+</head>
+<body data-tool="url-toolkit">
+<main class="s3-main">
+  <section class="s3-hero">
+    <h1>URL Toolkit</h1>
+    <p>Break a URL into its parts, edit the query string live, strip tracking parameters, and percent-encode or decode anything.</p>
+  </section>
+
+  <section class="card stack">
+    <div class="row between">
+      <h2>Parse &amp; clean a URL</h2>
+      <div class="row">
+        <button class="btn ghost small" id="sample">Sample</button>
+        <button class="btn ghost small" id="clearUrl">Clear</button>
+      </div>
+    </div>
+    <label class="sr" for="url">URL</label>
+    <textarea class="textarea ut-url" id="url" spellcheck="false" autocomplete="off" placeholder="Paste a full URL, e.g. https://s3eidat.github.io/page?x=1"></textarea>
+    <div class="row between">
+      <div class="row">
+        <button class="btn primary" id="strip"><svg class="i"><use href="#i-trash"/></svg>Strip tracking</button>
+        <span class="chip" id="urlStatus">Waiting for a URL</span>
+      </div>
+      <button class="btn" id="copyUrl"><svg class="i"><use href="#i-copy"/></svg>Copy URL</button>
+    </div>
+
+    <div class="grid-2 ut-parts">
+      <div class="stack">
+        <h3 class="ut-h3">Parts</h3>
+        <div class="tbl-wrap"><table class="tbl ut-tbl"><tbody id="parts"></tbody></table></div>
+      </div>
+      <div class="stack">
+        <div class="row between">
+          <h3 class="ut-h3">Query parameters <span class="faint" id="qCount"></span></h3>
+          <button class="btn small" id="addParam"><svg class="i"><use href="#i-plus"/></svg>Add</button>
+        </div>
+        <div class="ut-params" id="params"></div>
+        <p class="faint">Edit a key or value and the URL above is rebuilt as you type. Tracking parameters are flagged.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="card mt stack">
+    <div class="row between">
+      <h2>Encode / decode</h2>
+      <div class="seg" id="mode" role="group" aria-label="Encoding mode">
+        <button aria-pressed="true" data-v="component" title="encodeURIComponent: also encodes / ? &amp; = #">Component</button>
+        <button aria-pressed="false" data-v="full" title="encodeURI: keeps the URL structure">Full URL</button>
+      </div>
+    </div>
+    <div class="grid-2">
+      <label class="field">Input
+        <textarea class="textarea" id="encIn" dir="auto" spellcheck="false" placeholder="Text or a URL to encode, or %-encoded text to decode"></textarea>
+      </label>
+      <label class="field">Output
+        <textarea class="textarea" id="encOut" dir="auto" spellcheck="false" readonly></textarea>
+      </label>
+    </div>
+    <div class="row between">
+      <div class="row">
+        <button class="btn primary" id="encode">Encode</button>
+        <button class="btn" id="decode">Decode</button>
+        <label class="check"><input type="checkbox" id="plus"> Treat <code>+</code> as space (form data)</label>
+      </div>
+      <div class="row">
+        <span class="chip" id="encStatus">—</span>
+        <button class="btn small" id="copyEnc"><svg class="i"><use href="#i-copy"/></svg>Copy</button>
+      </div>
+    </div>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
